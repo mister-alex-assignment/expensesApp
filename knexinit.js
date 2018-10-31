@@ -1,11 +1,8 @@
+var config = require('config');
+
 knex = require('knex') ({   
     client: 'mysql2',
-    connection : {
-        host: '127.0.0.1',
-        user: 'root',
-        password: 'password',
-        database: 'expenses_schema'
-    }
+    connection : config.get('api.dbConfig')
 });
 
 module.exports = knex;
