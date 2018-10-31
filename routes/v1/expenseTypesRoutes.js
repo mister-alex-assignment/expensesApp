@@ -1,11 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var currencyController = require('../../controllers/currencyController');
 var knex = require('../../knexinit');
 
-/* GET currencies listing. */
+/* GET expense types listing. */
 router.get('/', function(req, res, next) {
-  knex.select().table('Currencies').
+  knex.select().table('ExpenseTypes').orderBy('id', 'asc').
     then(function(collection) {
       res.status(200).json({
         error: false,
