@@ -6,7 +6,7 @@ var processPromiseAndAnswer = require('../../middlewares/processPromise');
 /* GET expense types listing. */
 router.get('/', function(req, res, next) {
     processPromiseAndAnswer(
-        knex.select().table('ExpenseTypes').orderBy('id', 'asc'), res);
+        knex.select().table('ExpenseTypes').orderBy('id', 'asc'), res, 200);
   });
 
 module.exports = router;

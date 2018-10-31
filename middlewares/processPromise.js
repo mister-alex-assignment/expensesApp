@@ -1,7 +1,7 @@
-module.exports = (function(promise, res) {
+module.exports = (function(promise, res, successStatus) {
     promise
         .then(function(collection) {
-            res.status(200).json({
+            res.status(successStatus).json({
             error: false,
             data: collection
             })
