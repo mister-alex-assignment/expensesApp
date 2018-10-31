@@ -38,14 +38,14 @@ router.put('/', function (req, res, next) {
         'Recipient': req.body.recipient,
         'Currency': req.body.currency,
         'ExpenseTypeId': req.body.expenseTypeId
-    }), res, 201);
+    }), res, 202);
 });
 
 router.delete('/', function (req, res, next) {
     processPromiseAndAnswer(
     knex('Expenses')
     .where('id', '=', req.body.id)
-    .del(), res, 201);
+    .del(), res, 202);
 });
 
 module.exports = router;
