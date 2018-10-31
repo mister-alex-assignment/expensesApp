@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var helmet = require('helmet');
+var expressValidator = require('express-validator');
 
 var indexRouter = require('./routes/v1/index');
 var currenciesRouter = require('./routes/v1/currenciesRoutes');
@@ -20,6 +21,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(expressValidator());
 app.use(helmet());
 app.use(express.static(path.join(__dirname, 'public')));
 

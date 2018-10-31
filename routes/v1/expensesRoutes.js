@@ -17,6 +17,12 @@ router.get('/', function(req, res, next) {
 );
 
 router.post('/', function (req, res, next) {
+    req.sanitizeBody('amount').toFloat();
+    req.sanitizeBody('expenseDate').toDate();
+    req.sanitizeBody('recipient');
+    req.sanitizeBody('currency');
+    req.sanitizeBody('expenseTypeId').toInt();
+
     processPromiseAndAnswer(
     knex('Expenses').insert({
         'ExpenseDate': req.body.expenseDate,
@@ -29,6 +35,13 @@ router.post('/', function (req, res, next) {
 
 // TODO needs to check for existence
 router.put('/', function (req, res, next) {
+    req.sanitizeBody('id').toInt();
+    req.sanitizeBody('amount').toFloat();
+    req.sanitizeBody('expenseDate').toDate();
+    req.sanitizeBody('recipient');
+    req.sanitizeBody('currency');
+    req.sanitizeBody('expenseTypeId').toInt();
+
     processPromiseAndAnswer(
     knex('Expenses')
     .where('id', '=', req.body.id)
@@ -42,6 +55,8 @@ router.put('/', function (req, res, next) {
 });
 
 router.delete('/', function (req, res, next) {
+    req.sanitizeBody('id').toInt();
+
     processPromiseAndAnswer(
     knex('Expenses')
     .where('id', '=', req.body.id)
