@@ -23,6 +23,7 @@ router.get('/', function(req, res, next) {
     })
 });
 
+
 router.post('/', function (req, res, next) {
     knex('Expenses').insert({
         'ExpenseDate': req.body.expenseDate,
@@ -81,5 +82,6 @@ router.delete('/', function (req, res, next) {
         })
     })
 });
+
 
 module.exports = router;
