@@ -21,7 +21,7 @@ router.post('/', function (req, res, next) {
     req.sanitizeBody('expenseDate').toDate();
     req.sanitizeBody('recipient');
     req.sanitizeBody('currency');
-    req.sanitizeBody('expenseTypeId').toInt();
+    req.sanitizeBody('expenseTypeId');
 
     processPromiseAndAnswer(
     knex('Expenses').insert({
@@ -40,7 +40,7 @@ router.put('/', function (req, res, next) {
     req.sanitizeBody('expenseDate').toDate();
     req.sanitizeBody('recipient');
     req.sanitizeBody('currency');
-    req.sanitizeBody('expenseTypeId').toInt();
+    req.sanitizeBody('expenseTypeId');
 
     processPromiseAndAnswer(
     knex('Expenses')
