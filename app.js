@@ -3,9 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var helmet = require('helmet');
+var expressValidator = require('express-validator');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var indexRouter = require('./routes/v1/index');
+var currenciesRouter = require('./routes/v1/currenciesRoutes');
+var expenseTypesRouter = require('./routes/v1/expenseTypesRoutes');
+var expensesRouter = require('./routes/v1/expensesRoutes');
 
 var app = express();
 
@@ -17,10 +21,15 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(expressValidator());
+app.use(helmet());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/v1/', indexRouter);
+app.use('/v1/currencies', currenciesRouter);
+app.use('/v1/expenseTypes', expenseTypesRouter);
+app.use('/v1/expenses', expensesRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
