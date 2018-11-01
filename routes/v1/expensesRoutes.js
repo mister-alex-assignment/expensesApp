@@ -54,12 +54,12 @@ router.put('/', function (req, res, next) {
     }), res, 202);
 });
 
-router.delete('/', function (req, res, next) {
+router.delete('/:id', function (req, res, next) {
     req.sanitizeParams('id').toInt();
 
     processPromiseAndAnswer(
     knex('Expenses')
-    .where('id', '=', req.param.id)
+    .where('id', '=', req.params.id)
     .del(), res, 202);
 });
 
