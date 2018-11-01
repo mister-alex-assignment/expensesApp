@@ -10,6 +10,7 @@ var indexRouter = require('./routes/v1/index');
 var currenciesRouter = require('./routes/v1/currenciesRoutes');
 var expenseTypesRouter = require('./routes/v1/expenseTypesRoutes');
 var expensesRouter = require('./routes/v1/expensesRoutes');
+var cors = require('cors');
 
 var app = express();
 
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(expressValidator());
 app.use(helmet());
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/v1/', indexRouter);

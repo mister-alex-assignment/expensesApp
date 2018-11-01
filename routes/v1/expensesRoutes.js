@@ -55,11 +55,11 @@ router.put('/', function (req, res, next) {
 });
 
 router.delete('/', function (req, res, next) {
-    req.sanitizeBody('id').toInt();
+    req.sanitizeParams('id').toInt();
 
     processPromiseAndAnswer(
     knex('Expenses')
-    .where('id', '=', req.body.id)
+    .where('id', '=', req.param.id)
     .del(), res, 202);
 });
 
