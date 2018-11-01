@@ -1,5 +1,6 @@
-CREATE SCHEMA `expenses_schema` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+CREATE DATABASE IF NOT EXISTS `expenses_schema` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 
+use expenses_schema;
 
 CREATE TABLE `expenses_schema`.`Currencies` (
   `ISO` VARCHAR(3) NOT NULL COMMENT 'Currency ISO Code',
@@ -8,9 +9,9 @@ CREATE TABLE `expenses_schema`.`Currencies` (
   UNIQUE INDEX `ISO_UNIQUE` (`ISO` ASC) VISIBLE,
   UNIQUE INDEX `Name_UNIQUE` (`Name` ASC) VISIBLE);
 
-insert into Currencies(ISO, [Name]) values('CHF', 'Swiss Franc');
+insert into Currencies(ISO, Name) values('CHF', 'Swiss Franc');
 insert into Currencies(ISO, Name) values('EUR', 'Euro');
-insert into Currencies(ISO, Name) valuesCurrencies('USD', 'US Dollar');
+insert into Currencies(ISO, Name) values('USD', 'US Dollar');
 
 CREATE TABLE `expenses_schema`.`ExpenseTypes` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT 'Expense Type Id',
@@ -36,7 +37,7 @@ CREATE TABLE `expenses_schema`.`Expenses` (
   `Recipient` VARCHAR(100) NULL COMMENT 'Who’s got paid',
   `Currency` VARCHAR(3) NOT NULL COMMENT 'Currency ISO code',
   `ExpenseTypeId` INT NOT NULL COMMENT 'Type of the expense',
-  `ReportId` INT NULL DEFAULT 0 COMMENT `ReportId`;
+  `ReportId` INT NULL DEFAULT 0 COMMENT 'ReportId',
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   INDEX `ExpenseTypesFK_idx` (`ExpenseTypeId` ASC) VISIBLE,
@@ -54,4 +55,3 @@ CREATE TABLE `expenses_schema`.`Expenses` (
 
 
 ALTER USER root IDENTIFIED WITH mysql_native_password BY 'password';
-
