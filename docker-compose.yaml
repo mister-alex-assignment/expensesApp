@@ -1,0 +1,33 @@
+version: "3"
+services:
+
+  db:
+    image: mysql
+    container_name: db
+    volumes:
+      - ./expenses-api/database:/docker-entrypoint-initdb.d:z
+      - ./expenses-api/database/db:/var/lib/mysql:z
+      - ./expenses-api/database/db:/tmp/:z
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: "expenses_schema"
+      MYSQL_ROOT_PASSWORD: "password"
+
+  api:
+    build: ./expenses-api
+    depends_on:
+       - "db"
+    container_name: expenses_api
+    command: npm start
+    ports:
+      - "3000:3000"
+  
+  spa:
+    build: ./expenses-spa
+    depends_on:
+      - "api"
+    container_name: expenses_spa
+    command: npm start
+    ports:
+      - "3001:3001"
