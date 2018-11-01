@@ -7,6 +7,8 @@ module.exports = (function(promise, res, successStatus) {
             })
         })
         .catch(function (err) {
+            console.log(err);
+            
             res.status(500).json({
             error: true,
             data: err.message
