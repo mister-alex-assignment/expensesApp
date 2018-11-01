@@ -1,6 +1,4 @@
-CREATE DATABASE IF NOT EXISTS `expenses_schema` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-
-use expenses_schema;
+CREATE DATABASE IF NOT EXISTS  `expenses_schema` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 
 CREATE TABLE `expenses_schema`.`Currencies` (
   `ISO` VARCHAR(3) NOT NULL COMMENT 'Currency ISO Code',
