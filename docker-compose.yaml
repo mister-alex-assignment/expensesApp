@@ -1,0 +1,29 @@
+version: "3"
+services:
+
+  database:
+    image: mysql
+    container_name: mysql-expenses
+    volumes:
+
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: "expenses_schema"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "password"
+    networks: 
+        apinetwork:
+
+    api:
+      build: .
+      container_name: expenses_api
+      command: npm start
+      ports:
+        - "3000:3000"
+      networks: 
+        apinetwork:
+
+  networks: 
+    apinetwork:
+      driver: bridge
