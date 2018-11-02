@@ -9,7 +9,7 @@ Implement web app to track expenses (transaction date, amount, recipient, curren
 
 ## Deployment instructions
 **Pre-requisites**
-- Docker
+- Docker, docker compose (v3+)
 - git
 
 **Instructions**
